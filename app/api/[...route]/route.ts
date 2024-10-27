@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
+import userRouter from '../routes/user.route'
 export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
@@ -16,5 +17,6 @@ app.post("/post", (c) => {
   })
 })
 
+app.route("/user", userRouter);
 export const POST = handle(app);
 export const GET = handle(app);
